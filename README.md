@@ -6,4 +6,4 @@ Just a small structure used to work as a gallery portfolio of the results of pla
 
 ## Inspiration
 
-[![SHADERSPLAY]https://img.youtube.com/vi/juD4ayBbHdY/0.jpg)](https://www.youtube.com/watch?v=juD4ayBbHdY)
+[![SHADERSPLAY](https://img.youtube.com/vi/juD4ayBbHdY/0.jpg)](https://www.youtube.com/watch?v=juD4ayBbHdY)

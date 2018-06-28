@@ -34,6 +34,7 @@ const L = styled(Link)`
 const Menu = () => (
   <MenuWrapper>
     <L to="/1">1</L>
+    <L to="/2">2</L>
   </MenuWrapper>
 );
 

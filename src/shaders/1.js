@@ -118,7 +118,7 @@ class Shader extends React.Component {
     if (error) return(<div>NO WEBGL</div>);
     return (
         <Canvas
-          innerRef={node => this.container = node}
+          ref={node => this.container = node}
         />
     );
   }

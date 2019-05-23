@@ -1,6 +1,7 @@
 import React from 'react';
-import withRouter from 'react-router/withRouter';
+import {withRouter} from 'react-router';
 import styled from 'styled-components';
+
 import asyncComponent from './components/AsyncComponent';
 
 const AsyncMenu = asyncComponent(() => import('./components/Menu'));

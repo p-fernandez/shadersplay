@@ -1,6 +1,5 @@
 import React from 'react';
-import Route from 'react-router-dom/Route';
-import Switch from 'react-router-dom/Switch';
+import {Route, Switch} from 'react-router-dom';
 import asyncComponent from './components/AsyncComponent';
 
 const AsyncHome = asyncComponent(() => import('./components/Home'));

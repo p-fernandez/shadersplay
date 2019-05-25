@@ -1,4 +1,8 @@
-import React from 'react';
+import React,
+  {
+    useRef,
+    useState
+  } from 'react';
 import styled from 'styled-components';
 import {
   Color,
@@ -13,6 +17,11 @@ import {
   WebGLRenderer,
 } from 'three';
 
+import {
+  useDetectWebGL,
+  useWindowSize
+} from '../hooks';
+
 const Canvas = styled.div.attrs(props => ({
     style: {
       height: `${props.height}`,
@@ -22,7 +31,7 @@ const Canvas = styled.div.attrs(props => ({
   position: absolute;
 `;
 
-class Shader extends React.Component {
+/*Gclass Shader extends React.Component {
   constructor(props) {
     super(props);
     this.state = { error: false };
@@ -122,6 +131,18 @@ class Shader extends React.Component {
         />
     );
   }
+}*/
+
+const Shader = (props) => {
+  const canvasRef = useRef(null);
+
+  const [missingWebGL] = useState(useDetectWebGL());
+  const windowSize = useWindowSize();
+
+  console.log(windowSize);
+  return missingWebGL
+    ? (<div>NO WEBGL</div>)
+    : (<Canvas ref={canvasRef} />);
 }
 
 export default Shader;

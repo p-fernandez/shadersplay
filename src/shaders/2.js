@@ -19,12 +19,12 @@ import {
 import vertexShader from './2/vertexShader';
 import fragmentShader from './2/fragmentShader';
 
-const Canvas = styled.div.attrs({
-    style: props => ({
+const Canvas = styled.div.attrs(props => ({
+    style: { 
       height: `${props.height}`,
       width: `${props.width}`,
-    })
-  })`
+    }
+  }))`
   position: absolute;
 `;
 

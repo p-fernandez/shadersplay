@@ -13,16 +13,11 @@ const AppContainer = styled.div`
   width: 100%;
 `;
 
-class App extends React.Component {
-  render() {
-    const { children } = this.props;
-    return (
-      <AppContainer className='appContainer'>
-        { children }
-        <AsyncMenu />
-      </AppContainer>
-    );
-  }
-}
+const App = props => (
+  <AppContainer className='appContainer'>
+    { props.children }
+    <AsyncMenu />
+  </AppContainer>
+);
 
 export default withRouter(App);

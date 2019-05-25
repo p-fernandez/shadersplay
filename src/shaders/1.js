@@ -13,12 +13,12 @@ import {
   WebGLRenderer,
 } from 'three';
 
-const Canvas = styled.div.attrs({
-    style: props => ({
+const Canvas = styled.div.attrs(props => ({
+    style: {
       height: `${props.height}`,
       width: `${props.width}`,
-    })
-  })`
+    }
+  }))`
   position: absolute;
 `;
 

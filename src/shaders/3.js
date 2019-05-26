@@ -117,32 +117,31 @@ const Canvas = styled.div.attrs(props => ({
   }
 }*/
 
+const webGLRenderer = new WebGLRenderer({ antialias: true });
+
 const Shader = () => {
   const canvasRef = useRef(null);
 
-  const [missingWebGL] = useState(useDetectWebGL());
+  const [webGLEnabled] = useDetectWebGL();
   const windowSize = useWindowSize();
 
-  const [renderer] = useState(new WebGLRenderer({ antialias: true }));
+  const [renderer] = useState(webGLRenderer);
+  renderer.setSize(windowSize.width, windowSize.height);
+  renderer.setClearColor(0xeeeeee, 1);
   const [camera] = useState(new PerspectiveCamera(75, windowSize.width / windowSize.height, 1, 1000));
   const [scene] = useState(new Scene());
 
   useEffect(() => {
-    console.log('lol')
-    console.log(canvasRef)
-    if (canvasRef.current) {
-      canvasRef.current.appendChild(renderer.domElement);
-    }
+    canvasRef.current && canvasRef.current.appendChild(renderer.domElement);
   }, [canvasRef, renderer]);
 
-  renderer.setSize(windowSize.width, windowSize.height);
-  renderer.setClearColor(0xeeeeee, 1);
+  useEffect(() => { 
+    renderer.render(scene, camera);
+  }, [renderer, scene, camera]);
 
-  renderer.render(scene, camera);
-
-  return missingWebGL
-    ? (<div>NO WEBGL</div>)
-    : (<Canvas ref={canvasRef} />);
+  return webGLEnabled
+    ? <Canvas ref={canvasRef} />
+    : <div>NO WEBGL</div>;
 }
 
 export default Shader;

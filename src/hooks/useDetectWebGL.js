@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 function useDetectWebGL() {
-  useEffect(() => window.WebGLRenderingContext, [])
+  return useState(() => window.WebGLRenderingContext);
 };
 
 export default useDetectWebGL;

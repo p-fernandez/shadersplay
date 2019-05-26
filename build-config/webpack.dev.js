@@ -1,3 +1,4 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
@@ -11,12 +12,14 @@ module.exports = webpackMerge(commonConfig, {
     compress: true,
     historyApiFallback: true,
     hot: true,
+    open: true,
     port: 8000 
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   mode: 'development',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({template: './public/index.html'})
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({template: './public/index.html'}),
+    new webpack.HotModuleReplacementPlugin()
   ]
 });

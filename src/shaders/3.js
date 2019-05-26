@@ -1,4 +1,9 @@
-import React from 'react';
+import React,
+  {
+    useEffect,
+    useRef,
+    useState
+  } from 'react';
 import styled from 'styled-components';
 import {
   Color,
@@ -13,6 +18,11 @@ import {
   WebGLRenderer,
 } from 'three';
 
+import {
+  useDetectWebGL,
+  useWindowSize
+} from '../hooks';
+
 const Canvas = styled.div.attrs(props => ({
     style: {
       height: `${props.height}`,
@@ -22,7 +32,7 @@ const Canvas = styled.div.attrs(props => ({
   position: absolute;
 `;
 
-class Shader extends React.Component {
+/*Gclass Shader extends React.Component {
   constructor(props) {
     super(props);
     this.state = { error: false };
@@ -31,23 +41,10 @@ class Shader extends React.Component {
     this.detectWebGL = this.detectWebGL.bind(this);
     this.init = this.init.bind(this);
     this.onWindowResize = this.onWindowResize.bind(this);
-    this.renderCanvas = this.renderCanvas.bind(this);
   }
 
   componentDidMount() {
-    this.detectWebGL();
     this.init();
-    window.addEventListener('resize', this.onWindowResize, false);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onWindowResize);
-  }
-
-  detectWebGL() {
-    if (!window.WebGLRenderingContext) {
-      this.setState({ error: true });
-    }
   }
 
   init() {
@@ -106,12 +103,8 @@ class Shader extends React.Component {
     this.mesh.rotation.y += 0.01;
     this.mesh2.rotation.x -= 0.01;
     this.mesh2.rotation.y -= 0.01;
-    this.renderCanvas();
- 	}
-
-  renderCanvas() {
     this.renderer.render(this.scene, this.camera);
-  }
+ 	}
 
   render() {
     const { error } = this.state;
@@ -122,6 +115,34 @@ class Shader extends React.Component {
         />
     );
   }
+}*/
+
+const Shader = () => {
+  const canvasRef = useRef(null);
+
+  const [missingWebGL] = useState(useDetectWebGL());
+  const windowSize = useWindowSize();
+
+  const [renderer] = useState(new WebGLRenderer({ antialias: true }));
+  const [camera] = useState(new PerspectiveCamera(75, windowSize.width / windowSize.height, 1, 1000));
+  const [scene] = useState(new Scene());
+
+  useEffect(() => {
+    console.log('lol')
+    console.log(canvasRef)
+    if (canvasRef.current) {
+      canvasRef.current.appendChild(renderer.domElement);
+    }
+  }, [canvasRef, renderer]);
+
+  renderer.setSize(windowSize.width, windowSize.height);
+  renderer.setClearColor(0xeeeeee, 1);
+
+  renderer.render(scene, camera);
+
+  return missingWebGL
+    ? (<div>NO WEBGL</div>)
+    : (<Canvas ref={canvasRef} />);
 }
 
 export default Shader;

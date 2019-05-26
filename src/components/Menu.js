@@ -3,14 +3,23 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { color, textShadow } from './Styled';
 
-const MenuWrapper = styled.div`
+const CommonWrapper = styled.div`
   box-sizing: border-box;
-  background-color: gold;
   height: 2rem;
   position: fixed;
-  bottom: 0;
   width: 100vw; 
   z-index: 1001;
+`;
+
+const HookWrapper = styled(CommonWrapper)`
+  background-color: gold;
+  bottom: 2rem;
+`;
+
+const MenuWrapper = styled(CommonWrapper)`
+  background-color: gold;
+  bottom: 0;
+  opacity: 0.75;
 `;
 
 const L = styled(Link)`
@@ -32,10 +41,15 @@ const L = styled(Link)`
 `;
 
 const Menu = () => (
-  <MenuWrapper>
-    <L to="/1">1</L>
-    <L to="/2">2</L>
-  </MenuWrapper>
+  <>
+    <HookWrapper>
+      <L to="/3">3</L>
+    </HookWrapper>
+    <MenuWrapper>
+      <L to="/1">1</L>
+      <L to="/2">2</L>
+    </MenuWrapper>
+  </>
 );
 
 export default Menu;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter} from 'react-router';
+import { withRouter } from 'react-router';
 import styled from 'styled-components';
 
 import asyncComponent from './components/AsyncComponent';
@@ -14,8 +14,8 @@ const AppContainer = styled.div`
 `;
 
 const App = props => (
-  <AppContainer className='appContainer'>
-    { props.children }
+  <AppContainer className="appContainer">
+    {props.children}
     <AsyncMenu />
   </AppContainer>
 );

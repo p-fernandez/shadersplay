@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes';
 import App from './App';
 
-const Root = () => ( 
+const Root = () => (
   <BrowserRouter>
     <App>
       <Routes />
